@@ -229,7 +229,7 @@ void resto::bienvenue()
         // Création de l'objet QFile pour ouvrir l'ouvrir en mode écriture
     QFile file("monfichier.txt");
 
-    // Vérification de l'ouverture du fichier
+    // Vérification de l'ouverture du fichier en écriture seule et en mode texte.
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return;
 
@@ -260,24 +260,24 @@ void resto::bouton_nouvelle()
     //-- Configuration de la partie Entrée
     label_entree = new QLabel("Entrées :");
 
-        //-- Instanciation des entrées
-    /*QCheckBox *salade = new QCheckBox("Salade");
-    QCheckBox *soupe_lentille = new QCheckBox("Soupe aux lentilles");
-    QCheckBox *quiche = new QCheckBox("Quiche au thon");*/
-
+        // Instanciation des entrées
     entrees[0] = new QCheckBox("Salade");
     entrees[1] = new QCheckBox("Soupe aux lentilles");
     entrees[2] = new QCheckBox("Quiche au thon");
 
+    // Pour chaque case à cocher de boissons
     for (int i = 0; i < 3; i++)
     {
+        // Connecter le signal clicked de la case à cocher à une fonction
         connect(entrees[i], &QCheckBox::clicked, [this, i]
         {
+            // Si la case à cocher est cochée
             if (entrees[i]->isChecked())
             {
                 // Décocher toutes les autres QCheckBox
                 for (int j = 0; j < 3; j++)
                 {
+                    // // Si ce n'est pas la même case à cocher que celle qui a déclenché le signal
                     if (j != i)
                     {
                         entrees[j]->setChecked(false);
@@ -287,27 +287,18 @@ void resto::bouton_nouvelle()
         });
     }
 
-        //-- Mise en place dans la fenêtre des QCheckBox
+        // Mise en place dans la fenêtre des QCheckBox
     grille->addWidget(label_entree, 0, 0);
 
+        // Ajout des case dans la grille
     grille->addWidget(entrees[0], 1, 0);
     grille->addWidget(entrees[1], 2, 0);
     grille->addWidget(entrees[2], 3, 0);
-    /*grille->addWidget(salade, 1, 0);
-    grille->addWidget(soupe_lentille, 2, 0);
-    grille->addWidget(quiche, 3, 0);*/
-
 
     //-- Configuration de la partie Plat
     label_plat = new QLabel("Plats :");
 
         //-- Instanciation des plats
-    /*QCheckBox *tagliatelle = new QCheckBox("Tagliatelles à saumon fumé");
-    QCheckBox *risotto = new QCheckBox("Risotto aux asperges et aux truffes blanches");
-    QCheckBox *raviolis = new QCheckBox("Raviolis farcis à la viande et aux épices");
-    QCheckBox *osso_bucco = new QCheckBox("Osso bucco aux trompettes de la mort"); // Ca existe vraiment
-    QCheckBox *potjevleesch = new QCheckBox("Potjevleesch"); // ça aussi*/
-
     plats[0] = new QCheckBox("Tagliatelles à saumon fumé");
     plats[1] = new QCheckBox("Risotto aux asperges et aux truffes blanches");
     plats[2] = new QCheckBox("Raviolis farcis à la viande et aux épices");
@@ -335,28 +326,17 @@ void resto::bouton_nouvelle()
         //-- Mise en place
     grille->addWidget(label_plat, 0, 1);
 
+    // Ajout des plats dans la grille
     grille->addWidget(plats[0], 1, 1);
     grille->addWidget(plats[1], 2, 1);
     grille->addWidget(plats[2], 3, 1);
     grille->addWidget(plats[3], 4, 1);
     grille->addWidget(plats[4], 5, 1);
 
-    /*grille->addWidget(tagliatelle, 1, 1);
-    grille->addWidget(risotto, 2, 1);
-    grille->addWidget(raviolis, 3, 1);
-    grille->addWidget(osso_bucco, 4, 1);
-    grille->addWidget(potjevleesch, 5, 1);*/
-
-
     //-- Partie dessert
     label_dessert = new QLabel("Desserts :");
 
         //-- Instanciation
-    /*QCheckBox *tiramisu = new QCheckBox("Tiramisu");
-    QCheckBox *daim = new QCheckBox("Tarte au Daim");
-    QCheckBox *citron_meringuee = new QCheckBox("Tarte au citron méringuée");
-    QCheckBox *brownie = new QCheckBox("Brownie");*/
-
     desserts[0] = new QCheckBox("Tiramisu");
     desserts[1] = new QCheckBox("Tarte au Daim");
     desserts[2] = new QCheckBox("Tarte au citron méringuée");
@@ -383,44 +363,38 @@ void resto::bouton_nouvelle()
         //-- Mise en place
     grille->addWidget(label_dessert, 0, 2);
 
+    // Ajout des desserts dans la grille
     grille->addWidget(desserts[0], 1, 2);
     grille->addWidget(desserts[1], 2, 2);
     grille->addWidget(desserts[2], 3, 2);
     grille->addWidget(desserts[3], 4, 2);
 
-    /*grille->addWidget(tiramisu, 1, 2);
-    grille->addWidget(daim, 2, 2);
-    grille->addWidget(citron_meringuee, 3, 2);
-    grille->addWidget(brownie, 4, 2);*/
-
-
     //-- partie boisson
     label_boisson = new QLabel("Boissons :");
 
-        //-- Instanciation
-    /*QCheckBox *eau = new QCheckBox("Eau");
-    QCheckBox *coca = new QCheckBox("Coca-Cola");
-    QCheckBox *oasis = new QCheckBox("Oasis");
-    QCheckBox *cafe = new QCheckBox("Café");
-    QCheckBox *the = new QCheckBox("Thé");*/
-
+        //-- Instanciation des boissons
     boissons[0] = new QCheckBox("Eau");
     boissons[1] = new QCheckBox("Coca-Cola");
     boissons[2] = new QCheckBox("Oasis");
     boissons[3] = new QCheckBox("Café");
     boissons[4] = new QCheckBox("Thé");
 
+    // Pour chaque case à cocher de boissons
     for (int i = 0; i < 5; i++)
     {
+        // Connecter le signal clicked de la case à cocher à une fonction
         connect(boissons[i], &QCheckBox::clicked, [this, i]
         {
+            // Si la case à cocher est cochée
             if (boissons[i]->isChecked())
             {
                 // Décocher toutes les autres QCheckBox
                 for (int j = 0; j < 5; j++)
                 {
+                    // Si ce n'est pas la même case à cocher que celle qui a déclenché le signal
                     if (j != i)
                     {
+                        // Décocher la case à cocher
                         boissons[j]->setChecked(false);
                     }
                 }
@@ -437,21 +411,18 @@ void resto::bouton_nouvelle()
     grille->addWidget(boissons[3], 4, 3);
     grille->addWidget(boissons[4], 5, 3);
 
-    /*grille->addWidget(eau, 1, 3);
-    grille->addWidget(coca, 2, 3);
-    grille->addWidget(oasis, 3, 3);
-    grille->addWidget(cafe, 4, 3);
-    grille->addWidget(the, 5, 3);*/
-
+    // Configuration du bouton "Commandez"
     commander = new QPushButton("Commandez");
     grille->addWidget(commander, 7, 4);
 
+    // Ajout de la grille au layout principal
     mainlayout->addLayout(grille);
 
     QWidget *widget = new QWidget();
     widget->setLayout(mainlayout);
     setCentralWidget(widget);
 
+    // Connexion du signal clicked du bouton commander au slot bouton_commander
     connect(commander, SIGNAL(clicked()), this, SLOT(bouton_commander()));
 }
 
@@ -462,17 +433,23 @@ void resto::bouton_commander()
 
 void resto::bouton_afficher()
 {
+    // Configuration de la fenêtre de la commande
     setWindowTitle("Fenêtre des commandes"); // Changer le nom de la fenêtre
 
+    // Création des layouts
     horiz3 = new QHBoxLayout;
     mainlayout = new QVBoxLayout;
 
+    // Création des QLabel pour afficher la commande
     sonentree = new QLabel(this);
     sonplat = new QLabel(this);
     sondessert = new QLabel(this);
     saboisson = new QLabel(this);
+
+    // Création du bouton pour revenir à la page principal
     revenir = new QPushButton("Revenir à la page principal");
 
+    // Parcours des tableaux d'éléments de la commande pour trouver ceux qui sont cochés
     for (int i = 0; i < 4; i++)
     {
         if(entrees[i]->isChecked()) // // Si l'entrée i est cochée
@@ -480,60 +457,47 @@ void resto::bouton_afficher()
             // Remplacer le texte dans description_commande par le texte de l'entrée i
             sonentree->setText(entrees[i]->text());
         }
-        if(plats[i]->isChecked()) // // Si l'entrée i est cochée
+        if(plats[i]->isChecked()) // // Si le plat i est cochée
         {
             sonplat->setText(plats[i]->text());
         }
-        if(desserts[i]->isChecked()) // // Si l'entrée i est cochée
+        if(desserts[i]->isChecked()) // // Si le dessert i est cochée
         {
             sondessert->setText(desserts[i]->text());
         }
-        if(boissons[i]->isChecked()) // // Si l'entrée i est cochée
+        if(boissons[i]->isChecked()) // // Si la boisson i est cochée
         {
             saboisson->setText(boissons[i]->text());
         }
     }
+
+    // Création de la chaîne de caractères contenant la commande
     QString lacommande = "Votre commande:\n-" + sonentree->text() + "\n-" + sonplat->text() + "\n-" + sondessert->text() + "\n-" + saboisson->text();
     label_commande = new QLabel(lacommande);
     horiz3->addWidget(label_commande);
     horiz3->addWidget(revenir);
     mainlayout->addLayout(horiz3);
 
+    // Ouverture du fichier en mode écriture seule texte et ajout à la fin du fichier
     QFile file("monfichier.txt");
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append))
     {
-            return;}
-        QTextStream out(&file);
-        out << sonentree->text() << "\n-" << sonplat->text() << "\n-" << sondessert->text() << "\n-" << saboisson->text();
-        file.close();
+        return; // Si l'ouverture du fichier échoue, on quitte la fonction
+    }
 
-   /* QFile file("monfichier.txt");
-    if (file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append)) {
-        QTextStream stream(&file);
-        stream << "Bonjour" << endl;
-        file.close();
-    }*/
+    // Création d'un flux de sortie vers le fichier ouvert
+    QTextStream out(&file);
+        // Écriture de la commande dans le fichier
+    out << sonentree->text() << "\n-" << sonplat->text() << "\n-" << sondessert->text() << "\n-" << saboisson->text();
+    file.close(); // Fermeture du fichier
 
     QWidget *widget = new QWidget();
     widget->setLayout(mainlayout);
     setCentralWidget(widget);
 
+    // Connexion du signal clicked du bouton revenir au slot bienvenue
     connect(revenir, SIGNAL(clicked()), this, SLOT(bienvenue()));
 }
-
-void resto::bouton_quitter()
-{
-    //connect(quitter, SIGNAL(clicked()), this, SLOT(bouton_client()));
-    //QMessageBox::information(this, "Déconnexion", "A bientôt !");
-
-
-
-}
-/*void resto::tabChanged(int index)
-{
-// Traitement à effectuer lorsque l'onglet actif change
-qDebug() << "Onglet actif : " << index;
-}*/
 
 resto::~resto()
 {
