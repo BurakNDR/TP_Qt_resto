@@ -237,7 +237,7 @@ void resto::bienvenue()
     QTextStream out(&file);
 
     // Ecriture du prénom et du nom de l'utilisateur
-    out << sonprenom->text() << " " << sonom->text() << endl;
+    out << sonprenom->text() << " " << sonom->text() << "\n";
 
     // Fermeture du fichier
     file.close();
